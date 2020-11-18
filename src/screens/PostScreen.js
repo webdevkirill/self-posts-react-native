@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export const PostScreen = () => {
+export const PostScreen = ({navigation, route}) => {
+    const {id, booked, date, img, text} = route;
+    const postId = navigation.id;
 
     return (
         <View style={styles.wrapper}>

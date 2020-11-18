@@ -1,18 +1,21 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-export const Post = ({post}) => {
+export const Post = ({post, onOpen}) => {
 
     return (
-        <View style={styles.post}>
-            <ImageBackground source={{uri: post.img}} style={styles.image}>
-                <View style={styles.textWrap}>
-                    <Text style={styles.title}>
-                        {new Date(post.date).toLocaleDateString()}
-                    </Text>
-                </View>
-            </ImageBackground>
-        </View>
+        <TouchableOpacity activeOpacity={0.7} onPress={() => {onOpen(post)}}>
+            <View style={styles.post}>
+                <ImageBackground source={{uri: post.img}} style={styles.image}>
+                    <View style={styles.textWrap}>
+                        <Text style={styles.title}>
+                            {new Date(post.date).toLocaleDateString()}
+                        </Text>
+                    </View>
+                </ImageBackground>
+            </View>
+        </TouchableOpacity>
     )
 }
 
