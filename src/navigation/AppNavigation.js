@@ -37,14 +37,32 @@ export const AppNavigation = () => {
                                     onPress={() => console.log("Take photo")}
                                 />
                             </HeaderButtons>
-                        )
+                        ),
+                        headerLeft: () => (
+                            <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+                                <Item 
+                                    title="Toggle Drawer" 
+                                    iconName="ios-menu" 
+                                    onPress={() => console.log("Take photo")}
+                                />
+                            </HeaderButtons>
+                        ),
                     }}
                 />
                 <Stack.Screen 
                     name="Post" 
                     component={PostScreen} 
                     options={({route}) => ({
-                        title: `Пост от ${new Date(route.params.date).toLocaleDateString()}`
+                        title: `Пост от ${new Date(route.params.date).toLocaleDateString()}`,
+                        headerRight: () => (
+                            <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+                                <Item 
+                                    title="Take photo" 
+                                    iconName={route.params.booked ? "ios-star" : "ios-star-outline"}
+                                    onPress={() => console.log("Take photo")}
+                                />
+                            </HeaderButtons>
+                        ),
                     })}
                 />
             </Stack.Navigator>
