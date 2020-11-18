@@ -10,6 +10,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { BookedScreen } from '../screens/BookedScreen';
 import { Ionicons } from '@expo/vector-icons';
+import { getHeaderTitle } from './getHeaderTitle';
 
 const Stack = createStackNavigator();
 const defaultScreenOptions = {
@@ -62,14 +63,13 @@ export const AppNavigation = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator 
-                initialRouteName="Main"
                 screenOptions={defaultScreenOptions}
             >
                 <Stack.Screen 
-                    name="Main" 
+                    name="MainScreenTabNavigator" 
                     component={MainScreenTabNavigator}
-                    options={{
-                        title: 'Мой блог',
+                    options={({ route }) => ({
+                        title: getHeaderTitle(route),
                         headerRight: () => (
                             <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
                                 <Item 
@@ -88,7 +88,7 @@ export const AppNavigation = () => {
                                 />
                             </HeaderButtons>
                         ),
-                    }}
+                    })}
                 />
                 <Stack.Screen 
                     name="Post" 
