@@ -11,8 +11,20 @@ export const AppNavigation = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Main">
-                <Stack.Screen name="Main" component={MainScreen} />
-                <Stack.Screen name="Post" component={PostScreen} />
+                <Stack.Screen 
+                    name="Main" 
+                    component={MainScreen}
+                    options={{
+                        title: 'Мой блог'
+                    }}
+                />
+                <Stack.Screen 
+                    name="Post" 
+                    component={PostScreen} 
+                    options={{
+                        title: 'Пост №42'
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     )
