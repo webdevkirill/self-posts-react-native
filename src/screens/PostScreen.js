@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView, Button, Alert } from 'react-
 import { THEME } from '../theme';
 
 export const PostScreen = ({navigation, route}) => {
-    const {id, booked, date, img, text} = route.params;
+    const {booked, img, text} = route.params;
     
     const removeHandler = () => {
         Alert.alert(

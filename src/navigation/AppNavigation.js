@@ -4,7 +4,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { MainScreen } from '../screens/MainScreen';
 import { PostScreen } from '../screens/PostScreen';
 import { THEME } from '../theme';
-import { Platform } from 'react-native';
+import { Platform, Text } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { AppHeaderIcon } from '../components/AppHeaderIcon';
 
 const Stack = createStackNavigator();
 const defaultScreenOptions = {
@@ -26,7 +28,16 @@ export const AppNavigation = () => {
                     name="Main" 
                     component={MainScreen}
                     options={{
-                        title: 'Мой блог'
+                        title: 'Мой блог',
+                        headerRight: () => (
+                            <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+                                <Item 
+                                    title="Take photo" 
+                                    iconName="ios-camera" 
+                                    onPress={() => console.log("Take photo")}
+                                />
+                            </HeaderButtons>
+                        )
                     }}
                 />
                 <Stack.Screen 
