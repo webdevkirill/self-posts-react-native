@@ -1,7 +1,6 @@
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 
 export const getHeaderTitle = (route) => {
-    console.log(getFocusedRouteNameFromRoute(route))
     const routeName = getFocusedRouteNameFromRoute(route) || 'Main';
 
     switch (routeName) {

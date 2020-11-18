@@ -2,6 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { MainScreen } from '../screens/MainScreen';
 import { PostScreen } from '../screens/PostScreen';
 import { THEME } from '../theme';
@@ -20,7 +21,7 @@ const defaultScreenOptions = {
     headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
 };
 
-const Tab = createBottomTabNavigator();
+const Tab = Platform.OS === 'android' ? createMaterialBottomTabNavigator() : createBottomTabNavigator();
 
 const MainScreenTabNavigator = () => {
     return (
@@ -28,11 +29,17 @@ const MainScreenTabNavigator = () => {
             tabBarOptions={{
                 activeTintColor: THEME.MAIN_COLOR,
             }}
+            barStyle={{
+                backgroundColor: THEME.MAIN_COLOR
+            }}
+            shifting={true}
+            activeTintColor='#fff'
         >
             <Tab.Screen 
                 name="Main" 
                 component={MainScreen}
                 options={{
+                    tabBarLabel: 'Все',
                     tabBarIcon: ({color}) => (
                         <Ionicons 
                             name='ios-albums' 
@@ -46,6 +53,7 @@ const MainScreenTabNavigator = () => {
                 name="Booked" 
                 component={BookedScreen} 
                 options={{
+                    tabBarLabel: 'Изрбанное',
                     tabBarIcon: ({color}) => (
                         <Ionicons 
                             name='ios-star' 
