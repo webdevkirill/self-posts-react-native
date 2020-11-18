@@ -1,71 +1,22 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { MainScreen } from '../screens/MainScreen';
 import { PostScreen } from '../screens/PostScreen';
 import { THEME } from '../theme';
-import { Platform, Text } from 'react-native';
+import { Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
-import { BookedScreen } from '../screens/BookedScreen';
-import { Ionicons } from '@expo/vector-icons';
 import { getHeaderTitle } from './getHeaderTitle';
+import { MainScreenTabNavigator } from './MainScreenTabNavigator';
 
 const Stack = createStackNavigator();
+const OS = Platform.OS;
 const defaultScreenOptions = {
     headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? THEME.MAIN_COLOR : '#fff',
+        backgroundColor: OS === 'android' ? THEME.MAIN_COLOR : '#fff',
     },
-    headerTintColor: Platform.OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
+    headerTintColor: OS === 'android' ? '#fff' : THEME.MAIN_COLOR,
 };
-
-const Tab = Platform.OS === 'android' ? createMaterialBottomTabNavigator() : createBottomTabNavigator();
-
-const MainScreenTabNavigator = () => {
-    return (
-        <Tab.Navigator
-            tabBarOptions={{
-                activeTintColor: THEME.MAIN_COLOR,
-            }}
-            barStyle={{
-                backgroundColor: THEME.MAIN_COLOR
-            }}
-            shifting={true}
-            activeTintColor='#fff'
-        >
-            <Tab.Screen 
-                name="Main" 
-                component={MainScreen}
-                options={{
-                    tabBarLabel: 'Все',
-                    tabBarIcon: ({color}) => (
-                        <Ionicons 
-                            name='ios-albums' 
-                            size={24} 
-                            color={color} 
-                        />
-                    )
-                }}
-            />
-            <Tab.Screen 
-                name="Booked" 
-                component={BookedScreen} 
-                options={{
-                    tabBarLabel: 'Изрбанное',
-                    tabBarIcon: ({color}) => (
-                        <Ionicons 
-                            name='ios-star' 
-                            size={24} 
-                            color={color} 
-                        />
-                    )
-                }}
-            />
-        </Tab.Navigator>
-    );
-}
 
 export const AppNavigation = () => {
     return (
