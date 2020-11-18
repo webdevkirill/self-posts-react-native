@@ -14,7 +14,7 @@ export const AboutNavigator = () => (
             name="About" 
             component={AboutScreen}
             options={({ navigation }) => ({
-                title: 'О нас',
+                title: 'О приложении',
                 headerLeft: () => (
                     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
                         <Item 

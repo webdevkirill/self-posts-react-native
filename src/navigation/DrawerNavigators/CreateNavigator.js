@@ -14,7 +14,7 @@ export const CreateNavigator = () => (
             name="Create" 
             component={CreateScreen}
             options={({ navigation }) => ({
-                title: 'Создать пост',
+                title: 'Новый пост',
                 headerLeft: () => (
                     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
                         <Item 
