@@ -11,7 +11,7 @@ import { MainScreenTabNavigation } from './MainScreenTabNavigation';
 
 const Stack = createStackNavigator();
 const OS = Platform.OS;
-const defaultScreenOptions = {
+export const defaultScreenOptions = {
     headerStyle: {
         backgroundColor: OS === 'android' ? THEME.MAIN_COLOR : '#fff',
     },
@@ -33,7 +33,7 @@ export const PostsNavigation = () => {
                             <Item 
                                 title="Take photo" 
                                 iconName="ios-camera" 
-                                onPress={() => console.log("Take photo")}
+                                onPress={() => navigation.navigate('Create')}
                             />
                         </HeaderButtons>
                     ),
