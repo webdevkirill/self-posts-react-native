@@ -1,9 +1,8 @@
 import { AppLoading } from 'expo';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { bootstrap } from './src/bootstrap';
-import { AppNavigation } from './src/navigation/AppNavigation';
+import { DrawerNavigation } from './src/navigation/DrawerNavigation';
 
 
 export default function App() {
@@ -19,5 +18,5 @@ export default function App() {
         )
     }
 
-    return <AppNavigation />
+    return <DrawerNavigation />
 }

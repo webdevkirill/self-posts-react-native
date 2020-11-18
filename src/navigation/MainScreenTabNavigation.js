@@ -28,7 +28,7 @@ const OSTabNavigator = ({children}) => OS === 'android' ?
         {children}
     </Tab.Navigator>
 
-export const MainScreenTabNavigator = () => {
+export const MainScreenTabNavigation = () => {
     return (
         <OSTabNavigator>
             <Tab.Screen 
