@@ -3,10 +3,11 @@ import { LOAD_POSTS, TOOGLE_BOOKED, REMOVE_POST, ADD_POST } from '../types';
 
 const initialState = {
     posts: [],
+    loading: true
 };
 
 const handlers = {
-    [LOAD_POSTS]: (state, {payload}) => ({...state, posts: payload}),
+    [LOAD_POSTS]: (state, {payload}) => ({...state, posts: payload, loading: false}),
     [TOOGLE_BOOKED]: (state, {payload}) => ({
         ...state, 
         posts: [...state.posts].map(post => {

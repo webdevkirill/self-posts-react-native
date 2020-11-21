@@ -1,11 +1,23 @@
 import React from 'react';
-import { View, FlatList, StyleSheet, Text } from 'react-native';
+import { View, FlatList, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { Post } from './Post';
+import { useSelector } from 'react-redux';
+import { THEME } from '../theme';
 
 export const PostList = ({data, navigation}) => {
     
     const openPostHandler = (post) => {
         navigation.navigate('Post', post);
+    }
+
+    const loading = useSelector(state => state.postReducer.loading)
+
+    if (loading) {
+        return (
+            <View style={styles.loader}>
+                <ActivityIndicator color={THEME.MAIN_COLOR} />
+            </View>
+        )
     }
 
     if (!data.length) {
@@ -37,5 +49,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginVertical: 10,
         fontSize: 20
+    },
+    loader: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
