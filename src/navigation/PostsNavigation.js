@@ -52,15 +52,6 @@ export const PostsNavigation = () => {
                 component={PostScreen} 
                 options={({route}) => ({
                     title: `Пост от ${new Date(route.params.date).toLocaleDateString()}`,
-                    headerRight: () => (
-                        <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-                            <Item 
-                                title="Booked favourite" 
-                                iconName={route.params.booked ? "ios-star" : "ios-star-outline"}
-                                onPress={route.params.bookedToggleHandler}
-                            />
-                        </HeaderButtons>
-                    ),
                 })}
             />
 

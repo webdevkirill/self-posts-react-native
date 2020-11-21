@@ -1,15 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Button, Alert } from 'react-native';
 import { THEME } from '../theme';
-import { useSelector } from 'react-redux';
-import { CommonActions } from '@react-navigation/native';
+import { useSelector, useDispatch } from 'react-redux';
+import { removePost, toogleBooked } from '../store/actions/postActions';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { AppHeaderIcon } from '../components/AppHeaderIcon';
 
 export const PostScreen = ({navigation, route}) => {
     const {img, text, id} = route.params;
-    const booked = useSelector(state => state.postReducer.posts.find(post => post.id === id).booked);
+    const booked = useSelector(state => state.postReducer.posts.some(post => post.id === id && post.booked));
+    const dispatch = useDispatch();
+
+    const bookedToggleHandler = () => {
+        dispatch(toogleBooked(id))
+    }
+
+    console.log(1)
 
     useEffect(() => {
-        navigation.dispatch(CommonActions.setParams({ booked }));
+        navigation.setOptions({
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+                    <Item 
+                        title="Booked favourite" 
+                        iconName={booked ? "ios-star" : "ios-star-outline"}
+                        onPress={bookedToggleHandler}
+                    />
+                </HeaderButtons>
+            ),
+        });
     }, [booked, navigation]);
     
     const removeHandler = () => {
@@ -23,7 +42,10 @@ export const PostScreen = ({navigation, route}) => {
                 },
                 {
                     text: 'Удалить',
-                    onPress: () => {},
+                    onPress: () => {
+                        navigation.navigate('Main');
+                        dispatch(removePost(id));
+                    },  
                     style: 'destructive'
                 }
             ],

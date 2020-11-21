@@ -1,5 +1,5 @@
 
-import { LOAD_POSTS, TOOGLE_BOOKED } from '../types';
+import { LOAD_POSTS, TOOGLE_BOOKED, REMOVE_POST } from '../types';
 
 const initialState = {
     posts: [],
@@ -15,6 +15,10 @@ const handlers = {
             }
             return post
         })
+    }),
+    [REMOVE_POST]: (state, {payload}) => ({
+        ...state, 
+        posts: [...state.posts].filter(post => post.id !== payload)
     }),
     DEFAULT: (state) => state,
 };
