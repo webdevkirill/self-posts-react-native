@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { View, StyleSheet, Image, Button, Alert } from 'react-native';
+import * as Permissions from 'expo-permissions';
 
 const getPermissions = async () => {
-    const {statusCameraRoll} = await ImagePicker.requestCameraRollPermissionsAsync();
-    const {statusCamera} = await IImagePicker.requestCameraRollPermissionsAsync();
-    if (statusCamera !== 'granted' || statusCameraRoll !== 'granted') {
+    const {status} = await Permissions.askAsync(
+        Permissions.CAMERA,
+        Permissions.CAMERA_ROLL
+    );
+
+    if (status !== 'granted') {
         Alert.alert('Ошибка', 'Вы не дали права на использование камеры')
         return false
     } else {
