@@ -1,8 +1,9 @@
 import { AppLoading } from 'expo';
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
 import { bootstrap } from './src/bootstrap';
 import { DrawerNavigation } from './src/navigation/DrawerNavigation';
+import { store } from './src/store/index';
 
 
 export default function App() {
@@ -18,5 +19,9 @@ export default function App() {
         )
     }
 
-    return <DrawerNavigation />
+    return (
+        <Provider store={store}>
+            <DrawerNavigation />
+        </Provider>
+    )
 }
