@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PostScreen } from '../screens/PostScreen';
 import { THEME } from '../theme';
@@ -56,9 +55,9 @@ export const PostsNavigation = () => {
                     headerRight: () => (
                         <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
                             <Item 
-                                title="Take photo" 
+                                title="Booked favourite" 
                                 iconName={route.params.booked ? "ios-star" : "ios-star-outline"}
-                                onPress={() => console.log("Take photo")}
+                                onPress={route.params.bookedToggleHandler}
                             />
                         </HeaderButtons>
                     ),

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, Button, Alert } from 'react-native';
 import { THEME } from '../theme';
+import { useSelector } from 'react-redux';
+import { CommonActions } from '@react-navigation/native';
 
 export const PostScreen = ({navigation, route}) => {
-    const {booked, img, text} = route.params;
+    const {img, text, id} = route.params;
+    const booked = useSelector(state => state.postReducer.posts.find(post => post.id === id).booked);
+
+    useEffect(() => {
+        navigation.dispatch(CommonActions.setParams({ booked }));
+    }, [booked, navigation]);
     
     const removeHandler = () => {
         Alert.alert(
