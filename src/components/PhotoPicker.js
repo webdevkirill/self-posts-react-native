@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { View, StyleSheet, Image, Button, Alert } from 'react-native';
-import * as Permissions from 'expo-permissions';
 
 const getPermissions = async () => {
-    const {status} = await Permissions.askAsync(
-        Permissions.CAMERA,
-        Permissions.CAMERA_ROLL
-    )
-    if (status !== 'granted') {
+    const {statusCameraRoll} = await ImagePicker.requestCameraRollPermissionsAsync();
+    const {statusCamera} = await IImagePicker.requestCameraRollPermissionsAsync();
+    if (statusCamera !== 'granted' || statusCameraRoll !== 'granted') {
         Alert.alert('Ошибка', 'Вы не дали права на использование камеры')
         return false
     } else {
@@ -17,7 +14,7 @@ const getPermissions = async () => {
 }
 
 
-export const PhotoPicker = ({}) => {
+export const PhotoPicker = ({ onPick }) => {
 
     const [image, setImage] = useState(null);
 
@@ -27,11 +24,14 @@ export const PhotoPicker = ({}) => {
             return
         }
 
-        const img = await ImagePicker.launchCameraAsync ({
+        const img = await ImagePicker.launchCameraAsync({
             quality: 0.7,
             allowsEditing: false,
             aspect: [16, 9]
         });
+
+        setImage(img.uri);
+        onPick(img.uri);
     }
 
     return (
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     wrapper: {
         marginBottom: 10
     },
-    image: {
+    img: {
         width: '100%',
         height: 200,
         marginTop: 10
