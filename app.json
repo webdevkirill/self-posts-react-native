@@ -1,32 +1,40 @@
 {
-  "expo": {
-    "name": "self-posts-react-native",
-    "slug": "self-posts-react-native",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "expo": {
+        "name": "Self Blog",
+        "slug": "self-posts-react-native",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "bundleIdentifier": "com.kirillfyodorov.self-posts-react-native",
+            "buildNumber": "1.0.0",
+            "supportsTablet": true
+        },
+        "android": {
+            "package": "com.kirillfyodorov.self_posts_react_native",
+            "versionCode": 1,
+            "permissions": [
+                "CAMERA",
+                "WRITE_EXTERNAL_STORAGE"
+            ],
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#FFFFFF"
+            }
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        }
     }
-  }
 }
