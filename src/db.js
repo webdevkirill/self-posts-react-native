@@ -41,4 +41,30 @@ export class DB {
             })
         })
     }
+
+    static updatePost(id, booked) {
+        return new Promise((resolve, reject) => {
+            db.transaction(tx => {
+                tx.executeSql(
+                    `UPDATE posts SET BOOKED = ? WHERE id = ?`,
+                    [booked ? 0 : 1, id],
+                    (_, result) => resolve(result.insertId),
+                    (_, error) => reject(error)
+                )
+            })
+        })
+    }
+
+    static removePost(id) {
+        return new Promise((resolve, reject) => {
+            db.transaction(tx => {
+                tx.executeSql(
+                    `DELETE FROM posts WHERE id = ?`,
+                    [id],
+                    (_, result) => resolve(result.insertId),
+                    (_, error) => reject(error)
+                )
+            })
+        })
+    }
 }

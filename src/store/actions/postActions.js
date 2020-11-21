@@ -12,9 +12,15 @@ export const loadPosts = () => {
     }
 }
 
-export const toogleBooked = (id) => ({ type: TOOGLE_BOOKED, payload: id })
+export const toogleBooked = (id, booked) => async dispatch => {
+    await DB.updatePost(id, booked)
+    dispatch({ type: TOOGLE_BOOKED, payload: id })
+}
 
-export const removePost = (id) => ({ type: REMOVE_POST, payload: id })
+export const removePost = (id) => async dispatch => {
+    await DB.removePost(id)
+    dispatch({ type: REMOVE_POST, payload: id })
+}
 
 export const addPost = (post) => async dispatch => {
     const fileName = post.img.split('/').pop();
